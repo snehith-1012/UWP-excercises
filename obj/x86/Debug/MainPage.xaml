@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Remainders"
+    
     xmlns:data="using:Remainders"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -38,15 +39,15 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Margin="5,10,0,0" Orientation="Horizontal">
-                        <TextBox x:ConnectionId='20' BorderBrush="White" BorderThickness="1"  Name="RemainderDescription"   Width="200" />
+                        <TextBox x:ConnectionId='25' BorderBrush="White" BorderThickness="1"  Name="RemainderDescription"   Width="200" />
 
-                        <RelativePanel x:ConnectionId='21' 
+                        <RelativePanel x:ConnectionId='26' 
                             BorderBrush="White"
                             BorderThickness="1"
                             Name="PeopleRelativePanel"
                             
                             >
-                                <Button x:ConnectionId='28' 
+                                <Button x:ConnectionId='33' 
                                     Name="People"
                                     Content="&#xE716;" 
                                     FontFamily="Segoe MDL2 Assets" 
@@ -56,20 +57,24 @@
                                 <Button.Flyout>
                                 <Flyout>
                                     <StackPanel >
-                                        <AutoSuggestBox x:ConnectionId='31' 
-                                            Name="MyAutoSuggestBox" 
-                                            PlaceholderText="Search"  
-                                                                                       
-                                                                                                
-                                                                                            
-                                            Width="150"
-                                        />
-                                    </StackPanel>
+                                            <AutoSuggestBox x:ConnectionId='36' Name="MyAutoSuggestBox"
+                                                            PlaceholderText="Search"
+                                                                                                      
+                                                                                                                
+                                                                                                            
+                                                            Width="150">
+                                                <AutoSuggestBox.ItemTemplate>
+                                                    <DataTemplate                          >
+                                                        <TextBlock x:ConnectionId='38'                                  />
+                                                    </DataTemplate>
+                                                </AutoSuggestBox.ItemTemplate>
+                                            </AutoSuggestBox>
+                                        </StackPanel>
                                 </Flyout>
                             </Button.Flyout>
 
                                 </Button>
-                            <Button x:ConnectionId='29'
+                            <Button x:ConnectionId='34'
                                     Name="PeopleRemoveButton"
                                     Content="X" 
                                     CornerRadius="15"
@@ -88,11 +93,11 @@
                                         </DataTemplate>
                                     </GridView.ItemTemplate>
                                 </GridView>-->
-                                    <TextBlock x:ConnectionId='30'                                                          />
+                                    <TextBlock x:ConnectionId='35'                                                          />
                                 </ToolTipService.ToolTip>
                             </Button>
                         </RelativePanel>
-                        <Button x:ConnectionId='22'
+                        <Button x:ConnectionId='27'
                             Name="SetTime"  
                             Content="&#xE916;" 
                             FontFamily="Segoe MDL2 Assets"  
@@ -105,16 +110,16 @@
                                 <Flyout>
                                     <StackPanel Orientation="Vertical" Grid.Row="1"  Margin="20,20,0,0" Grid.Column="1"  >
                                         <Border Margin="0,0,0,5" BorderBrush="Black" BorderThickness="1" >
-                                        <TextBlock x:ConnectionId='27'  Name="DateAndTimeDisplay" FontSize="15"   Text="Today" />
+                                        <TextBlock x:ConnectionId='32'  Name="DateAndTimeDisplay" FontSize="15"   Text="Today" />
                                         </Border>
-                                        <CalendarDatePicker x:ConnectionId='24'                                     Name="Calendar" HorizontalAlignment="Left"  />
-                                        <TimePicker x:ConnectionId='25' Name="SetTime1"  Margin="0,10,0,0" />
+                                        <CalendarDatePicker x:ConnectionId='29'                                     Name="Calendar" HorizontalAlignment="Left"  />
+                                        <TimePicker x:ConnectionId='30' Name="SetTime1"  Margin="0,10,0,0" />
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="1*"/>
                                                 <ColumnDefinition Width="1*"/>
                                             </Grid.ColumnDefinitions>
-                                            <Button x:ConnectionId='26'                        Name="SaveDate" Content="Save" HorizontalAlignment="Stretch" />
+                                            <Button x:ConnectionId='31'                        Name="SaveDate" Content="Save" HorizontalAlignment="Stretch" />
                                             <Button Content="Delete" Grid.Column="1" HorizontalAlignment="Stretch" />
                                         </Grid>
                                     </StackPanel>
@@ -122,7 +127,7 @@
                             </Button.Flyout>
 
                         </Button>
-                        <Button x:ConnectionId='23' 
+                        <Button x:ConnectionId='28' 
                             Name="RemainderSetButton"
                             Content="Set" 
                                                               
@@ -136,7 +141,7 @@
 
                     <ListView x:ConnectionId='4'
                         Grid.Row="1"
-                                                              
+                                                                      
                         Name="MyRemainders"
                         SelectionMode="None"
                         IsItemClickEnabled="True"
@@ -148,11 +153,18 @@
                                 <StackPanel x:ConnectionId='6'  Background="Pink" Width="400"
                                     Margin="0,0,0,5" Name="ListOfRemainders"                                  Orientation="Vertical" 
                                      VerticalAlignment="Stretch"  >
-                                    <TextBlock x:ConnectionId='7'                             />
-                                    <TextBlock x:ConnectionId='8'                                                                                />
+                                    <TextBlock x:ConnectionId='7'                                          />
+                                    <TextBlock x:ConnectionId='8'                                                                                                   />
                                     <StackPanel Orientation="Horizontal" >
-                                        <TextBlock x:ConnectionId='9' Name="AssignedTo"                                                        Text="Assigned to" Margin="0,0,5,0" />
-                                        <TextBlock x:ConnectionId='10'                                                                                             />
+                                        <TextBlock Name="AssignedTo"  Text="Assigned to" Margin="0,0,5,0" />
+                                        <ListView x:ConnectionId='10'                                           >
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate                          >
+                                                    <TextBlock x:ConnectionId='12'                                  />
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                        <!--<TextBlock Visibility="{x:Bind CheckWhetherAssignedOrNot(zuids)}" Text="{x:Bind getPersonsList(zuids)}"/>-->
                                     </StackPanel>
                                     <FlyoutBase.AttachedFlyout>
                                         <Flyout Placement="Left" >
@@ -167,39 +179,51 @@
                                                     <ColumnDefinition Width="1*"/>
                                                     <ColumnDefinition Width="1*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <TextBox x:ConnectionId='11' Margin="0,0,0,2" Grid.ColumnSpan="2"                            />
-                                                <Button x:ConnectionId='12' Margin="0,0,0,2" HorizontalAlignment="Stretch" Name="DateAndTimeFlyout" Grid.Row="1" Grid.ColumnSpan="2"                                          >
+                                                <TextBox x:ConnectionId='13' Margin="0,0,0,2" Grid.ColumnSpan="2"                                         />
+                                                <Button x:ConnectionId='14' Margin="0,0,0,2" HorizontalAlignment="Stretch" 
+                                                        Name="DateAndTimeFlyout" Grid.Row="1" Grid.ColumnSpan="2"                                          >
                                                     <Button.Flyout>
                                                         <Flyout>
-                                                            <CalendarView x:ConnectionId='19' 
-                                                        Name="FlyoutCalender"                                                            
+                                                            <CalendarView 
+                                                        Name="FlyoutCalender"  
                                                              />
                                                         </Flyout>
                                                     </Button.Flyout>
                                                 </Button>
                                                 <StackPanel Grid.Row="2">
-                                                    <TextBlock x:ConnectionId='15'                                                        Text="Assigned to" />
+                                                    <TextBlock  Text="Assigned to" />
                                                     <Button Name="AddMorePeople" Content="+" CornerRadius="25" FontSize="20">
                                                         <Button.Flyout>
                                                             <Flyout>
                                                                 <StackPanel >
-                                                                    <AutoSuggestBox x:ConnectionId='18' 
-                                                                        Name="MyAutoSuggestBox1" 
-                                                                        PlaceholderText="Search"  
-                                                                        Width="150"
-                                                                                                                             
-                                                                                                                  
-                                                                                                                        
-                                                                                                  
-                                                                     />
+                                                                    <AutoSuggestBox x:ConnectionId='21' Name="MyAutoSuggestBox1"
+                                                                                    PlaceholderText="Search"
+                                                                                    Width="150"
+                                                                                                                                         
+                                                                                                                              
+                                                                                                                                    
+                                                                                                              >
+                                                                        <AutoSuggestBox.ItemTemplate>
+                                                                            <DataTemplate                          >
+                                                                                <TextBlock x:ConnectionId='23'                                  />
+                                                                            </DataTemplate>
+                                                                           
+                                                                        </AutoSuggestBox.ItemTemplate>
+                                                                    </AutoSuggestBox>
                                                                 </StackPanel>
                                                             </Flyout>
                                                         </Button.Flyout>
                                                     </Button>
-                                                    <TextBlock x:ConnectionId='17'                                       />
+                                                    <ListView x:ConnectionId='18'                                           >
+                                                        <ListView.ItemTemplate>
+                                                            <DataTemplate                          >
+                                                                <TextBlock x:ConnectionId='20'                                  />
+                                                            </DataTemplate>
+                                                        </ListView.ItemTemplate>
+                                                    </ListView>
                                                 </StackPanel>
-                                                <Button x:ConnectionId='13'                             Margin="0,0,2,0" Name="MarkAsComplete" Content="MarkAsComplete"                              Grid.Row="3" />
-                                                <Button x:ConnectionId='14'                             Name="DeleteButton" Content="Delete"                            Grid.Row="3" Grid.Column="1" />
+                                                <Button x:ConnectionId='15'                             Margin="0,0,2,0" Name="MarkAsComplete" Content="MarkAsComplete"                              Grid.Row="3" />
+                                                <Button x:ConnectionId='16'                             Name="DeleteButton" Content="Delete"                            Grid.Row="3" Grid.Column="1" />
                                             </Grid>
                                         </Flyout>
                                     </FlyoutBase.AttachedFlyout>
@@ -212,7 +236,7 @@
             </SplitView.Pane>
 
             <SplitView.Content>
-                <TextBlock x:ConnectionId='32' FlowDirection="RightToLeft"  HorizontalAlignment="Right" Name="Testing" FontSize="30" Text="" />
+                <TextBlock x:ConnectionId='39' FlowDirection="RightToLeft"  HorizontalAlignment="Right" Name="Testing" FontSize="30" Text="You are my boy" />
             </SplitView.Content>
         </SplitView>
 
