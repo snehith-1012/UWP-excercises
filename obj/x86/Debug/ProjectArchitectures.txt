@@ -1,1 +1,1 @@
-D:\Remainder-default\Remainders.csproj;x86
+E:\Github\UWP-excercises\Remainders.csproj;x86

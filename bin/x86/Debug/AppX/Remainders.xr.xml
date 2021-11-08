@@ -106,13 +106,13 @@
       <RootProperty Name="PlaceholderText" />
       <RootProperty Name="Width" />
       <RootProperty Name="Tag" />
+      <RootProperty Name="ItemTemplate" />
       <RootEvent Name="SuggestionChosen" />
       <RootEvent Name="TextChanged" />
       <RootEvent Name="PointerEntered" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.CalendarView">
       <RootProperty Name="Name" />
-      <RootEvent Name="SelectedDatesChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.RelativePanel">
       <RootProperty Name="Name" />

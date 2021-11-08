@@ -8158,7 +8158,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\snehith-pt4312\\.nuget\\packages\\": {},
+    "C:\\Users\\SHAKIR\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
@@ -8166,11 +8166,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Remainder-default\\Remainders.csproj",
+      "projectUniqueName": "E:\\Github\\UWP-excercises\\Remainders.csproj",
       "projectName": "Remainders",
-      "projectPath": "D:\\Remainder-default\\Remainders.csproj",
-      "packagesPath": "C:\\Users\\snehith-pt4312\\.nuget\\packages\\",
-      "outputPath": "D:\\Remainder-default\\obj\\",
+      "projectPath": "E:\\Github\\UWP-excercises\\Remainders.csproj",
+      "packagesPath": "C:\\Users\\SHAKIR\\.nuget\\packages\\",
+      "outputPath": "E:\\Github\\UWP-excercises\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -8179,7 +8179,7 @@
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\snehith-pt4312\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\SHAKIR\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"

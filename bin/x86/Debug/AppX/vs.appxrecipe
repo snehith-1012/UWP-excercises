@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>SNEHITH-PT4312</Machine>
-    <WindowsUser>snehith-pt4312</WindowsUser>
+    <Machine>SHAKIR</Machine>
+    <WindowsUser>SHAKIR</WindowsUser>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetOsVersion>10.0</TargetOsVersion>
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
@@ -10,7 +10,7 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>505cd529-1c5d-40d5-91ad-2b59c7626596</PackageIdentityName>
     <PackageIdentityPublisher>CN=Madhurya</PackageIdentityPublisher>
-    <IntermediateOutputPath>D:\Remainder-default\obj\x86\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>E:\Github\UWP-excercises\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,8 +18,8 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>D:\Remainder-default\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>9324BCBEC62FFBF8B6A70B5FA3CC2A7CA634571FFE4ECDDFF3635B669E44C928</RegisteredManifestChecksum>
+    <LayoutDir>E:\Github\UWP-excercises\bin\x86\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>82CB2534B81D0CDC6BAA5708420C748451709AB42A75E6CCB1F0F8992D8AB24A</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>505cd529-1c5d-40d5-91ad-2b59c7626596_1.0.0.0_x86__2mpfx2hpg0p8r</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>505cd529-1c5d-40d5-91ad-2b59c7626596_2mpfx2hpg0p8r!App</RegisteredUserModeAppID>
     <RegisteredPackageID>505cd529-1c5d-40d5-91ad-2b59c7626596</RegisteredPackageID>
@@ -27,86 +27,86 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="D:\Remainder-default\bin\x86\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="E:\Github\UWP-excercises\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-11-08T13:52:17.816</Modified>
+      <Modified>2021-11-08T19:13:29.726</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="D:\Remainder-default\bin\x86\Debug\Remainders.exe">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\bin\x86\Debug\Remainders.exe">
       <PackagePath>entrypoint\Remainders.exe</PackagePath>
-      <Modified>2021-11-08T13:52:15.817</Modified>
+      <Modified>2021-11-08T19:13:29.321</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.12\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
-      <Modified>2021-02-04T19:45:46.000</Modified>
+      <Modified>2021-02-04T19:15:46.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\bin\10.0.19041.0\XamlCompiler\Microsoft.UI.Xaml.Markup.winmd">
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
-      <Modified>2020-12-01T23:22:00.000</Modified>
+      <Modified>2020-12-01T22:52:00.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2021-11-08T05:57:34.120</Modified>
+      <Modified>2021-11-08T16:06:44.457</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2021-11-08T05:57:33.965</Modified>
+      <Modified>2021-11-08T16:06:44.452</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-11-08T05:57:33.981</Modified>
+      <Modified>2021-11-08T16:06:44.452</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-11-08T05:57:33.996</Modified>
+      <Modified>2021-11-08T16:06:44.453</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-11-08T05:57:34.012</Modified>
+      <Modified>2021-11-08T16:06:44.453</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-11-08T05:57:34.043</Modified>
+      <Modified>2021-11-08T16:06:44.454</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-11-08T05:57:34.063</Modified>
+      <Modified>2021-11-08T16:06:44.454</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-11-08T05:57:34.081</Modified>
+      <Modified>2021-11-08T16:06:44.454</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\bin\x86\Debug\Remainders.xr.xml">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\bin\x86\Debug\Remainders.xr.xml">
       <PackagePath>Remainders.xr.xml</PackagePath>
-      <Modified>2021-11-08T06:32:39.695</Modified>
+      <Modified>2021-11-08T19:03:07.231</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\bin\x86\Debug\App.xbf">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2021-11-08T13:52:15.649</Modified>
+      <Modified>2021-11-08T19:11:27.065</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\bin\x86\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2021-11-08T13:52:15.649</Modified>
+      <Modified>2021-11-08T19:11:27.064</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
-      <Modified>2020-12-01T21:22:06.000</Modified>
+      <Modified>2020-12-01T20:52:06.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2021-11-08T10:28:08.631</Modified>
+      <Modified>2021-11-08T19:03:07.727</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Remainder-default\bin\x86\Debug\Core\Remainders.exe">
+    <AppxPackagedFile Include="E:\Github\UWP-excercises\bin\x86\Debug\Core\Remainders.exe">
       <PackagePath>Remainders.exe</PackagePath>
-      <Modified>2021-11-08T13:52:17.803</Modified>
+      <Modified>2021-11-08T19:13:29.723</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
