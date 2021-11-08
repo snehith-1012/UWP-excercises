@@ -1,0 +1,1 @@
+This is basic Remainder application i wanted to create all the remainders which are set for me or by me will be displayed on the right side split panel. Full details of each remainder will be dislayed in respective flyout.
