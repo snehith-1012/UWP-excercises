@@ -18,6 +18,7 @@ using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -30,10 +31,10 @@ namespace Remainders
     {
         public List<Channel> channelsList = new List<Channel>();
         public List<Person> Persons = new List<Person>();
-        public List<Remainder> Remainders = new List<Remainder>();
-        public HashSet<string> Peoplenames = new HashSet<string>();
-        public List<string> TemperoryList = new List<string>();
+        public ObservableCollection<Remainder> Remainders = new ObservableCollection<Remainder>();
+        
 
+        public List<Person> TemperorySelectedPersonList = new List<Person>();
         public ObservableCollection<Remainder> RemaindersForMe = new ObservableCollection<Remainder>();
 
         public int remainderId = 0;
@@ -46,22 +47,19 @@ namespace Remainders
             }
             set
             {
-                if (peopleAdded!= value)
-                {
-                    peopleAdded = value;
-                    RaisePropertyChanged(nameof(peopleIncludedforOneRemainder));
-                }
+                peopleAdded = value;
+                RaisePropertyChanged();
             }
         }
 
-        public int channelId=-1;
+        public int channelId = -1;
         public string UIPersonId = "1";
         public int dateSet = 0;
-        
-        public ObservableCollection<Remainder> CompletedRemainders = new ObservableCollection<Remainder>();
-        DateTime RemainderDateAndTime=DateTime.Today;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public ObservableCollection<Remainder> CompletedRemainders = new ObservableCollection<Remainder>();
+        DateTime RemainderDateAndTime = DateTime.Today;
+
+
 
         public MainPage()
         {
@@ -70,12 +68,8 @@ namespace Remainders
             Persons.Add(new Person("2", "someone", "someone@zohocorp.com"));
             Persons.Add(new Person("3", "someone2", "someone2@zohocorp.com"));
             Persons.Add(new Person("4", "someone3", "someone3@zohocorp.com"));
+            Persons.Add(new Person("'5", "someone4", "someone4@zohocorp.com"));
 
-            foreach(var i in Persons)
-            {
-                Peoplenames.Add(i.name);
-            }
-            
         }
 
 
@@ -104,28 +98,28 @@ namespace Remainders
         private void MyAutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             var Auto = (AutoSuggestBox)sender;
-            List<string> Suggestion;
+            List<Person> Suggestion = new List<Person>()
             if (string.IsNullOrEmpty(Auto.Text))
-                Suggestion = Peoplenames.Where(p=>p!="snehith").ToList();
+                Suggestion = Persons.Where(p => p.Name!="snehith").ToList();
             else
-                Suggestion = Peoplenames.Where(p => p.StartsWith(Auto.Text, StringComparison.OrdinalIgnoreCase) && p!="snehith" ).ToList();
-            Auto.ItemsSource = Suggestion.ToArray();
-            
+                Suggestion = Persons.Where(p => p.Name.StartsWith(Auto.Text, StringComparison.OrdinalIgnoreCase) && p.Name != "snehith").ToList();
+            Auto.ItemsSource = Suggestion;
         }
 
         private void MyAutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-            MyAutoSuggestBox.Text = args.SelectedItem.ToString();
-            
+            Person selectedPerson = (Person)args.SelectedItem;
+            MyAutoSuggestBox.Text = selectedPerson.Name;
+
 
             foreach (var i in Persons)
             {
-                if (i.name == MyAutoSuggestBox.Text)
+                if (i.Name == selectedPerson.Name)
                 {
                     int duplicate = 0;
-                    foreach (var j in TemperoryList)
+                    foreach (var j in TemperorySelectedPersonList)
                     {
-                        if (j == i.zuid)
+                        if (j.ZuId == i.ZuId)
                         {
                             duplicate = 1;
                             break;
@@ -133,18 +127,18 @@ namespace Remainders
                     }
                     if (duplicate == 0)
                     {
-                        TemperoryList.Add(i.zuid);
+                        TemperorySelectedPersonList.Add(i);
                         if (peopleAdded != "")
-                            peopleAdded += " and " + args.SelectedItem.ToString();
+                            peopleAdded += " and " + selectedPerson.Name;
                         else
-                            peopleAdded += args.SelectedItem.ToString();
+                            peopleAdded += selectedPerson.Name;
                         RaisePropertyChanged(nameof(peopleIncludedforOneRemainder));
                         break;
                     }
-                }    
+                }
             }
-            //PeopleRemoveButton.Content = TemperoryList.Count.ToString();
-            if(TemperoryList.Count>0)
+
+            if (TemperorySelectedPersonList.Count > 0)
             {
                 PeopleRemoveButton.Visibility = Visibility.Visible;
             }
@@ -152,11 +146,12 @@ namespace Remainders
             {
                 PeopleRemoveButton.Visibility = Visibility.Collapsed;
             }
-            foreach(var i in channelsList)
+
+            foreach (var i in channelsList)
             {
-               if(i.channelName==MyAutoSuggestBox.Text)
+                if (i.ChannelName == selectedPerson.Name)
                 {
-                    channelId = i.channelId;
+                    channelId = i.ChannelId;
                     break;
                 }
             }
@@ -173,22 +168,26 @@ namespace Remainders
                 messageDialog.ShowAsync();
                 return;
             }
-            TemperoryList.Add("1");
-            ObservableCollection<string> l = new ObservableCollection<string>(TemperoryList);
-            Remainders.Add(new Remainder(RemainderDescription.Text, RemainderDateAndTime, false, l, null,dateSet,remainderId+1));
+
+
+            var newRemainder = new Remainder(RemainderDescription.Text, RemainderDateAndTime, false, null, dateSet, remainderId + 1);
+
+            foreach (var item in TemperorySelectedPersonList)
+            {
+                newRemainder.People.Add(item);
+            }
+
+            Remainders.Add(newRemainder);
+            RemaindersForMe.Add(newRemainder);
             remainderId += 1;
             RemainderDescription.Text = "";
             DateAndTimeDisplay.Text = "";
 
-            foreach (var i in TemperoryList)
-            {
-                if (i == UIPersonId)
-                    RemaindersForMe.Add(Remainders[Remainders.Count - 1]);
-            }
+            
 
-            TemperoryList.Clear();
+            TemperorySelectedPersonList.Clear();
             peopleAdded = "";
-            peopleIncludedforOneRemainder="";
+            peopleIncludedforOneRemainder = "";
             RemainderDateAndTime = DateTime.Now;
             RaisePropertyChanged(nameof(peopleIncludedforOneRemainder));
             RemainderDateAndTime = DateTime.Today;
@@ -200,7 +199,7 @@ namespace Remainders
 
         private void MyRemainders_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
+
         }
 
         private void ListOfRemainders_Tapped(object sender, TappedRoutedEventArgs e)
@@ -211,11 +210,12 @@ namespace Remainders
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             int myValue = (int)(((Button)sender).Tag);
-            foreach(var i in RemaindersForMe)
+            foreach (var i in Remainders)
             {
                 if (i.RemainderId == myValue)
                 {
                     RemaindersForMe.Remove(i);
+                    Remainders.Remove(i);
                     break;
                 }
             }
@@ -224,12 +224,14 @@ namespace Remainders
         private void MarkAsComplete_Click(object sender, RoutedEventArgs e)
         {
             int myValue = (int)(((Button)sender).Tag);
-            foreach (var i in RemaindersForMe)
+
+            foreach (var i in Remainders)
             {
                 if (i.RemainderId == myValue)
                 {
                     CompletedRemainders.Add(i);
                     RemaindersForMe.Remove(i);
+                    Remainders.Remove(i);
                     break;
                 }
             }
@@ -237,23 +239,18 @@ namespace Remainders
 
         private void FlyoutCalender_SelectedDatesChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
         {
-              
+
         }
 
         private void MyAutoSuggestBox_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             var Auto = (AutoSuggestBox)sender;
-            List<string> Suggestion;
-            Suggestion = Peoplenames.Where(p => p != "snehith").ToList();
+            List<Person> Suggestion = new List<Person>();
+            Suggestion = Persons.Where(p => p.Name != "snehith").ToList();
             Auto.ItemsSource = Suggestion.ToArray();
         }
-        public void RaisePropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
+
+
 
         private void Calendar_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
@@ -264,42 +261,46 @@ namespace Remainders
         {
             peopleAdded = "";
             RaisePropertyChanged(nameof(peopleIncludedforOneRemainder));
-            TemperoryList.Clear();
+            TemperorySelectedPersonList.Clear();
             PeopleRemoveButton.Visibility = Visibility.Collapsed;
 
         }
 
         private void MyAutoSuggestBox1_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-            int value = (int)sender.Tag;
+            int remainderId = (int)sender.Tag;
+            Person selectedPerson = (Person)args.SelectedItem;
             
-            foreach(var i in RemaindersForMe.ToList())
+            foreach (var i in RemaindersForMe)
             {
-                if(i.RemainderId==value)
+                if(i.RemainderId==remainderId)
                 {
-                    foreach(var j in Persons)
+                    var already_present = 0;
+                    foreach(var j in i.People)
                     {
-                        if(j.name==args.SelectedItem.ToString())
+                        if(j.ZuId==selectedPerson.ZuId)
                         {
-                            i.zuids.Add(j.zuid);
-                            break;
+                            already_present = 1;
+                            break ;
                         }
                     }
+                    if (already_present == 0)
+                        i.People.Add(selectedPerson);
                     break;
                 }
             }
+            sender.Text ="" ;
+        }
 
-            foreach(var i in RemaindersForMe.ToList())
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        void RaisePropertyChanged([CallerMemberName] string name = null)
+        {
+            if (PropertyChanged != null)
             {
-                if(i.RemainderId==value)
-                { 
-                    if(i.dateandtime.ToString().Count()>0)
-                    RemaindersForMe.Add(new Remainder(i.Description, i.DateAndTime, i.isCompleted, i.zuids, i.channelId, 1, remainderId+1));
-                    else
-                        RemaindersForMe.Add(new Remainder(i.Description, i.DateAndTime, i.isCompleted, i.zuids, i.channelId, 0, remainderId + 1));
-                    remainderId += 1;
-                    RemaindersForMe.Remove(i);
-                }
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
     }
@@ -343,7 +344,18 @@ namespace Remainders
     if (i.RemainderId == value)
     {
         foreach (var j in i.zuids)
-        {
+        {//foreach(var i in RemaindersForMe.ToList())
+            //{
+            //    if(i.RemainderId==value)
+            //    { 
+            //        if(i.dateandtime.ToString().Count()>0)
+            //        RemaindersForMe.Add(new Remainder(i.Description, i.DateAndTime, i.isCompleted, i.zuids, i.channelId, 1, remainderId+1));
+            //        else
+            //            RemaindersForMe.Add(new Remainder(i.Description, i.DateAndTime, i.isCompleted, i.zuids, i.channelId, 0, remainderId + 1));
+            //        remainderId += 1;
+            //        RemaindersForMe.Remove(i);
+            //    }
+            //}
             foreach (var k in Persons)
             {
                 if (k.zuid == j)
@@ -355,3 +367,41 @@ namespace Remainders
         break;
     }
 }*/
+
+
+
+
+//foreach(var i in RemaindersForMe.ToList())
+//{
+//    if(i.RemainderId==value)
+//    {
+//        foreach(var j in Persons)
+//        {
+//            if(j.name==args.SelectedItem.ToString())
+//            {
+//                i.zuids.Add(j.zuid);
+//                break;
+//            }
+//        }
+//        break;
+//    }
+//}
+
+
+/*Remainder selectedRemainder = Remainders.FirstOrDefault(a => a.RemainderId == remainderId);
+            if (selectedRemainder.People.Where(a => a.ZuId == selectedPerson.ZuId).ToList().Count == 0)
+            {
+                selectedRemainder.People.Add(selectedPerson);
+                RaisePropertyChanged();
+            }*/
+
+//foreach (var i in TemperorySelectedPersonList)
+//{
+//    if (i == UIPersonId)
+//        RemaindersForMe.Add(Remainders[Remainders.Count - 1]);
+//}
+
+
+
+//public HashSet<string> Peoplenames = new HashSet<string>();
+//public List<string> TemperoryList = new List<string>();

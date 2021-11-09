@@ -1,22 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Remainders;
 
 namespace Remainders
 {
-    public class Person 
+    public class Person : INotifyPropertyChanged
     {
-        public string zuid;
-        public string name,email;
-        public Remainder r { get; set; }
-        public Person(string id,string name,string email)
+        private string name, email;
+        private Remainder r;
+
+
+
+        public string ZuId { get; set; }
+        public string Name
         {
-            this.zuid = id;
-            this.name = name;
-            this.email = email;
+            get { return name; }
+            set { name = value; RaisePropertyChanged(); }
+        }
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; RaisePropertyChanged(); }
+        }
+
+
+        public Remainder Remainder
+        {
+            get { return r; }
+            set { r = value; RaisePropertyChanged(); }
+        }
+
+
+
+
+        public Person(string id, string name, string email)
+        {
+            this.ZuId = id;
+            this.Name = name;
+            this.Email = email;
+        }
+
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        void RaisePropertyChanged([CallerMemberName] string name = null)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
 
 
